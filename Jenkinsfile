@@ -9,6 +9,7 @@ pipeline {
         IMAGE_NAME = 'borsa-fullstack'
         IMAGE_TAG = "${env.BUILD_NUMBER}"
         CONTAINER_NAME = 'borsa-app'
+        HOST_PORT = '8001'
     }
 
     stages {
@@ -41,7 +42,7 @@ pipeline {
         stage('Docker Deploy') {
             steps {
                 sh 'docker rm -f ${CONTAINER_NAME} || true'
-                sh 'docker run -d --name ${CONTAINER_NAME} -p 8000:8000 ${IMAGE_NAME}:${IMAGE_TAG}'
+                sh 'docker run -d --name ${CONTAINER_NAME} -p ${HOST_PORT}:8000 ${IMAGE_NAME}:${IMAGE_TAG}'
             }
         }
     }
