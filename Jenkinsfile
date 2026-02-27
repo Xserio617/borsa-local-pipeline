@@ -20,14 +20,14 @@ pipeline {
 
         stage('Backend Dependencies Check') {
             steps {
-                sh 'docker run --rm -v "$PWD":/app -w /app python:3.11-slim sh -c "pip install -r requirements.txt"'
+                sh 'docker run --rm -v jenkins_home:/var/jenkins_home -w /var/jenkins_home/workspace/borsa-local-pipeline python:3.11-slim sh -c "ls -la && pip install -r requirements.txt"'
             }
         }
 
         stage('Frontend Build Check') {
             steps {
                 dir('frontend') {
-                    sh 'docker run --rm -v "$PWD":/app -w /app node:20-alpine sh -c "npm install && npm run build"'
+                    sh 'docker run --rm -v jenkins_home:/var/jenkins_home -w /var/jenkins_home/workspace/borsa-local-pipeline/frontend node:20-alpine sh -c "ls -la && npm install && npm run build"'
                 }
             }
         }
