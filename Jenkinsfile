@@ -1,6 +1,10 @@
 pipeline {
     agent any
 
+    options {
+        skipDefaultCheckout(true)
+    }
+
     environment {
         IMAGE_NAME = 'borsa-fullstack'
         IMAGE_TAG = "${env.BUILD_NUMBER}"
@@ -16,7 +20,8 @@ pipeline {
 
         stage('Backend Dependencies Check') {
             steps {
-                sh 'python3 -m pip install -r requirements.txt'
+                sh 'python3 -m pip --version || (apt-get update && apt-get install -y python3-pip)'
+                sh 'python3 -m pip install --break-system-packages -r requirements.txt'
             }
         }
 
