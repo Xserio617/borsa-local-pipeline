@@ -22,7 +22,10 @@ app.add_middleware(
 )
 
 frontend_dist_path = Path(__file__).parent / "frontend" / "dist"
+frontend_assets_path = frontend_dist_path / "assets"
 if frontend_dist_path.exists():
+    if frontend_assets_path.exists():
+        app.mount("/assets", StaticFiles(directory=frontend_assets_path), name="frontend-assets")
     app.mount("/frontend", StaticFiles(directory=frontend_dist_path), name="frontend")
 
 # --- Veri Modelleri ---
