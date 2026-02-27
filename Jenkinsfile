@@ -20,16 +20,14 @@ pipeline {
 
         stage('Backend Dependencies Check') {
             steps {
-                sh 'python3 -m pip --version || (apt-get update && apt-get install -y python3-pip)'
-                sh 'python3 -m pip install --break-system-packages -r requirements.txt'
+                sh 'docker run --rm -v "$PWD":/app -w /app python:3.11-slim sh -c "pip install -r requirements.txt"'
             }
         }
 
         stage('Frontend Build Check') {
             steps {
                 dir('frontend') {
-                    sh 'npm install'
-                    sh 'npm run build'
+                    sh 'docker run --rm -v "$PWD":/app -w /app node:20-alpine sh -c "npm install && npm run build"'
                 }
             }
         }
