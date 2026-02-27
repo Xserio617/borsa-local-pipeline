@@ -19,6 +19,34 @@ h1 {
   margin-bottom: 1.5rem;
 }
 
+.section-title {
+  margin-top: 2rem;
+}
+
+.rates-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1rem;
+}
+
+.card {
+  background: #ffffff;
+  border-radius: 8px;
+  padding: 1rem;
+  border: 1px solid #e2e8f0;
+}
+
+.value {
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin: 0.5rem 0;
+}
+
+.meta {
+  margin-top: 1rem;
+  color: #475569;
+}
+
 ul {
   list-style: none;
   padding: 0;
@@ -27,13 +55,11 @@ ul {
 }
 
 li {
-  background: #ffffff;
-  border-radius: 8px;
-  padding: 1rem;
-  border: 1px solid #e2e8f0;
+  margin-bottom: 1rem;
 }
 
-h2 {
+h2,
+h3 {
   margin-top: 0;
 }
 

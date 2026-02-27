@@ -10,6 +10,10 @@ export default defineConfig({
       '/haberler': {
         target: 'http://localhost:8000',
         changeOrigin: true
+      },
+      '/kurlar': {
+        target: 'http://localhost:8000',
+        changeOrigin: true
       }
     }
   },
